@@ -1,12 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
+<%--
 	String path = request.getContextPath();
 String basePath = "https://" + request.getServerName() + path + "/";
-%>
+--%>
 <!DOCTYPE html>
 <html>
 <head>
+<!--  
 <base href="<%=basePath%>">
+-->
 <title>limit</title>
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
 <meta charset="UTF-8">

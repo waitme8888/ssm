@@ -29,4 +29,14 @@ public class TestController {
 	public Object getString() {
 		return "哈哈";
 	}
+	
+	@RequestMapping("/ex")
+	public void throwException() {
+		throw new RuntimeException();
+	}
+	
+	@RequestMapping("/nopage")
+	public String pageNoFund() {
+		return "null";
+	}
 }

@@ -1,12 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-	String path = request.getContextPath();
-String basePath = "https://" + request.getServerName() + path + "/";
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<base href="<%=basePath%>">
 <title>500</title>
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" media="screen" />
 <meta charset="UTF-8">
@@ -53,7 +49,7 @@ body {
 <body>
 	<div class="not-found">
 		<p>
-			您可以 <a href="dashboard">返回首页</a>
+			您可以 <a href="#">返回首页</a>
 		</p>
 	</div>
 </body>

@@ -29,17 +29,16 @@
     </mvc:annotation-driven>
     
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/jsp"></property>
+        <property name="prefix" value="/pages/"></property>
         <property name="suffix" value=".jsp"></property>
-        <property name="contentType" value="text/html;charset=UTF-8"></property>
     </bean>
-    
+ 
     <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="exceptionMappings">
             <props>
                 <prop key="org.apache.shiro.authz.UnauthorizedException">global/limit</prop>
                 <prop key="java.lang.Exception">global/500</prop>
-                <prop key="java.lang.Throwable">global/500</prop>
+                <prop key="java.lang.RuntimeException">global/500</prop>
             </props>
         </property>
         <property name="statusCodes">
@@ -53,4 +52,6 @@
         <property name="defaultStatusCode" value="500" />
     </bean>
 
+    <mvc:resources mapping="*.ico" location="/" />
+    <mvc:resources mapping="/resources/**" location="/resources/" />
 </beans>
