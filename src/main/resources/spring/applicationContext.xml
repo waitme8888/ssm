@@ -11,6 +11,7 @@
     </context:component-scan>
 
 
+    <context:property-placeholder location="classpath:properties/config.properties" ignore-unresolvable="true" />
     <context:property-placeholder location="classpath:properties/db.properties" ignore-unresolvable="true" />
                         
     <import resource="classpath:spring/spring-mybatis.xml"/>
