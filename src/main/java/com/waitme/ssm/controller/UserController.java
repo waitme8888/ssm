@@ -14,8 +14,19 @@ import com.waitme.ssm.service.UserService;
 @Controller
 public class UserController {
 	
+	public static final String PAGE_USER_INDEX = "user/userList";
+	
+
 	@Resource
 	private UserService userService;
+	
+	@RequestMapping("/list")
+	public String list() {
+		
+		
+		return PAGE_USER_INDEX;
+	}
+	
 
 	@RequestMapping("/{id}")
 	@ResponseBody
@@ -24,4 +35,6 @@ public class UserController {
 		
 		return user;
 	}
+	
+	
 }

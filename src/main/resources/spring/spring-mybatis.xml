@@ -43,6 +43,27 @@
 		<!-- 监控数据库 -->
 		<property name="filters" value="mergeStat" />
 	</bean>
+	
+	<bean id="wall-filter" class="com.alibaba.druid.wall.WallFilter">
+        <!-- 对被认为是攻击的SQL进行LOG.error输出 ，暂时设置为false -->
+        <property name="logViolation" value="false" />
+        <!-- 对被认为是攻击的SQL抛出SQLExcepton 为不影响业务功能的继续执行，暂时设置为false，但是仍然可以在监控页面监控到信息 -->
+        <property name="throwException" value="false" />
+    </bean>
+
+    <!--配置druid监控spring begin -->
+    <bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor"></bean>
+    <bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
+        <property name="patterns">
+            <list>
+                <value>com.waitme..service.*</value>
+            </list>
+        </property>
+    </bean>
+    <aop:config>
+        <aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
+    </aop:config>
+    <!--配置druid监控spring end -->
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -55,10 +76,24 @@
 		<property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml" /> 
 	</bean>
 	
+	<!-- 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.waitme.ssm.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
-
+	 -->
+	 
+    <!-- 扫描DAO层接口，生成代理实现类 -->
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.waitme.ssm.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+        <property name="markerInterface" value="com.waitme.core.dao.BaseMapper" />
+        <property name="properties">
+            <value>
+                mappers = com.waitme.core.dao.BaseMapper
+                <!-- ORDER = BEFORE -->
+            </value>
+        </property>
+    </bean>
 
 </beans>
