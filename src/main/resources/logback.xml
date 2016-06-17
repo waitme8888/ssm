@@ -3,14 +3,15 @@
 <!-- 
     <property name="LOG_HOME" value="D:/logs/"/> 
     <property name="APP_NAME" value="ssm"/> 
- -->    
+ -->
+    <!-- 日志会生成在应用下的logs目录下 -->    
     <property name="LOG_HOME" value="${ssm.root}"/> 
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss} [%t] %p %c - %m%n</pattern>
         </encoder>
     </appender>
-    
+    <!-- info级别日志 -->
     <appender name="infoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">   
             <fileNamePattern>${LOG_HOME}/logs/info_%d{yyyy-MM-dd}.log</fileNamePattern>   
@@ -29,10 +30,26 @@
 	        <level>info</level>
 	    </filter>
 	     -->
+    </appender> 
+    <!-- error级别日志 -->
+    <appender name="errorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">   
+            <fileNamePattern>${LOG_HOME}/logs/error_%d{yyyy-MM-dd}.log</fileNamePattern>   
+            <maxHistory>30</maxHistory>    
+        </rollingPolicy>   
+        <encoder>   
+           <pattern>%d{HH:mm:ss} [%t] %p %c - %m%n</pattern>   
+        </encoder> 
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>  
+            <onMatch>ACCEPT</onMatch>  
+            <onMismatch>DENY</onMismatch>  
+        </filter>
     </appender>  
 
     <root level="info">
         <appender-ref ref="stdout" /> 
         <appender-ref ref="infoAppender" />
+        <appender-ref ref="errorAppender" />
     </root>
 </configuration>
