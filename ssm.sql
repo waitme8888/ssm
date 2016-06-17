@@ -26,11 +26,11 @@ CREATE TABLE `user` (
   `age` int(3) DEFAULT NULL COMMENT '年龄',
   `gender` int(1) DEFAULT '0' COMMENT '性别，0：男，1：女',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`name`,`age`,`gender`) values (1,'张三',34,0),(2,'李四',20,0),(3,'王五',25,0);
+insert  into `user`(`id`,`name`,`age`,`gender`) values (1,'张三',34,0),(2,'李四',20,0),(3,'王五',25,0),(4,'41',25,0),(5,'5',25,0),(6,'6',25,0),(7,'7',25,0),(8,'8',25,0),(9,'9',25,0),(10,'10',25,0),(11,'11',25,0),(12,'12',25,0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

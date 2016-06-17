@@ -3,6 +3,12 @@
 PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
 "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
+<!--
+  tips：
+      1、执行mvn mybatis-generator:generate命令，生成代码
+      2、生成的文件位置可自行调整
+-->
+
 <generatorConfiguration>
 	<!-- 配置文件路径 -->
 	<properties resource="generator/generatorConfig.properties" />
