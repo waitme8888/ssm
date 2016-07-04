@@ -4,7 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.waitme.core.service.BaseService;
+import com.waitme.core.mybatis.service.BaseService;
 import com.waitme.ssm.dao.UserMapper;
 import com.waitme.ssm.model.User;
 

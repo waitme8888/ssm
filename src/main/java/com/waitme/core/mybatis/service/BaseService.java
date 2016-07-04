@@ -1,12 +1,12 @@
-package com.waitme.core.service;
+package com.waitme.core.mybatis.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.waitme.core.dao.BaseMapper;
-import com.waitme.core.model.BaseModel;
+import com.waitme.core.mybatis.dao.BaseMapper;
+import com.waitme.core.mybatis.model.BaseModel;
 
 /**
  * <p>

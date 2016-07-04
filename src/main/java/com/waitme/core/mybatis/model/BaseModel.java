@@ -1,4 +1,4 @@
-package com.waitme.core.model;
+package com.waitme.core.mybatis.model;
 
 import java.io.Serializable;
 

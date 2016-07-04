@@ -1,4 +1,4 @@
-package com.waitme.core.interceptor;
+package com.waitme.core.mybatis.interceptor;
 
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;

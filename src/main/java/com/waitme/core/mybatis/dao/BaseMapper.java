@@ -1,4 +1,4 @@
-package com.waitme.core.dao;
+package com.waitme.core.mybatis.dao;
 
 import tk.mybatis.mapper.common.ConditionMapper;
 import tk.mybatis.mapper.common.Mapper;
