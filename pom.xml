@@ -135,6 +135,11 @@
             <artifactId>hibernate-core</artifactId>
             <version>3.6.10.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.20.0-GA</version>
+        </dependency>
         <!-- spring-->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -254,7 +259,9 @@
 	       <artifactId>mybatis-generator-maven-plugin</artifactId>
 	       <version>1.3.2</version>
 	       <configuration>
-	           <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
+	           <configurationFile>
+	               ${basedir}/src/main/resources/mybatis/generator/generatorConfig.xml
+	           </configurationFile>
 	           <overwrite>true</overwrite>
 	           <verbose>true</verbose>
 	       </configuration>

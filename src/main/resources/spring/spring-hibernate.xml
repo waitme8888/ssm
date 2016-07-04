@@ -9,18 +9,23 @@
 
     <bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="true" />
     
-    <bean id="hibernateSessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="lobHandler" ref="lobHandler"/> 
+        <property name="lobHandler" ref="lobHandler"/>
+        <property name="mappingDirectoryLocations">
+            <list>
+                <value>classpath:/com/waitme/ssm/hibernate/model</value>
+            </list>
+        </property>
         <property name="packagesToScan">
            <list>
-                <value>com.waitme.ssm.hibernate.*</value>
+                <value>com.waitme.ssm.hibernate.model</value>
             </list>
         </property>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.connection.SetBigStringTryClob">true</prop>
                 <prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
@@ -28,7 +33,11 @@
         </property>
     </bean>
     
-        <!-- 使用JDBC事务  begin -->
+    <bean id="dao" class="com.waitme.core.hibernate.dao.BaseDao">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <!-- 使用JDBC事务  begin -->
     <!-- 
     <aop:aspectj-autoproxy />
      -->
@@ -36,7 +45,7 @@
     <tx:annotation-driven transaction-manager="txManager" />
     
     <bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-        <property name="sessionFactory" ref="hibernateSessionFactory"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <!-- AOP配置事务 -->
     <tx:advice id="txAdvice" transaction-manager="txManager">
