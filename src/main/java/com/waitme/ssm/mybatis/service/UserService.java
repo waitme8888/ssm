@@ -1,12 +1,12 @@
-package com.waitme.ssm.service;
+package com.waitme.ssm.mybatis.service;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.waitme.core.mybatis.service.BaseService;
-import com.waitme.ssm.dao.UserMapper;
-import com.waitme.ssm.model.User;
+import com.waitme.ssm.mybatis.dao.UserMapper;
+import com.waitme.ssm.mybatis.model.User;
 
 @Service("userService")
 public class UserService extends BaseService<User> {

@@ -123,11 +123,17 @@
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>${mysql.version}</version>
 		</dependency>
-        <!--druid -->
+        <!-- druid -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>1.0.20</version>
+        </dependency>
+        <!-- hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>3.6.10.Final</version>
         </dependency>
         <!-- spring-->
         <dependency>

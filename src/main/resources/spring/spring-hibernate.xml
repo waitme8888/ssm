@@ -6,51 +6,40 @@
                         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
                         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
                         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-                        
-	<bean id="mybatisSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations">
-			<array>
-				<value>classpath:com/waitme/ssm/dao/mapper/*.xml</value>
-				<value>classpath:com/waitme/ssm/**/dao/mapper/*.xml</value>
-			</array>
-		</property>
-		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml" /> 
-	</bean>
-	
-	<!-- 
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.waitme.ssm.dao" />
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-	</bean>
-	 -->
-	 
-    <!-- 扫描DAO层接口，生成代理实现类 -->
-    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.waitme.ssm.mybatis.dao" />
-        <property name="sqlSessionFactoryBeanName" value="mybatisSessionFactory" />
-        <property name="markerInterface" value="com.waitme.core.mybatis.dao.BaseMapper" />
-        <property name="properties">
-            <value>
-                mappers = com.waitme.core.mybatis.dao.BaseMapper
-                <!-- ORDER = BEFORE -->
-            </value>
+
+    <bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="true" />
+    
+    <bean id="hibernateSessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="lobHandler" ref="lobHandler"/> 
+        <property name="packagesToScan">
+           <list>
+                <value>com.waitme.ssm.hibernate.*</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.connection.SetBigStringTryClob">true</prop>
+                <prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
+            </props>
         </property>
     </bean>
     
-            
-    <!-- 使用JDBC事务  begin -->
+        <!-- 使用JDBC事务  begin -->
     <!-- 
     <aop:aspectj-autoproxy />
      -->
     <!-- 使用annotation注解方式配置事务 -->
-    <tx:annotation-driven transaction-manager="transactionManager" />
+    <tx:annotation-driven transaction-manager="txManager" />
     
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
+    <bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="hibernateSessionFactory"/>
     </bean>
     <!-- AOP配置事务 -->
-    <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+    <tx:advice id="txAdvice" transaction-manager="txManager">
         <tx:attributes>
             <tx:method name="select*" propagation="SUPPORTS" read-only="true" />
             <tx:method name="query*" propagation="SUPPORTS" read-only="true" />
@@ -65,9 +54,9 @@
     </tx:advice>
     <!-- 配置AOP切面 -->
     <aop:config>
-        <aop:pointcut id="transactionPointcut" expression="execution(* com.waitme..mybatis.service.*.*(..))" />
-        <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
+        <aop:pointcut id="txPointcut" expression="execution(* com.waitme..hibernate.service.*.*(..))" />
+        <aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice" />
     </aop:config>
     <!-- 使用JDBC事务  end -->
-    
+
 </beans>

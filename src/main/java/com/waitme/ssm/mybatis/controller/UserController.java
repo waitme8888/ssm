@@ -1,4 +1,4 @@
-package com.waitme.ssm.controller;
+package com.waitme.ssm.mybatis.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,8 +23,8 @@ import tk.mybatis.mapper.entity.Example.Criteria;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.waitme.ssm.model.User;
-import com.waitme.ssm.service.UserService;
+import com.waitme.ssm.mybatis.model.User;
+import com.waitme.ssm.mybatis.service.UserService;
 
 @RequestMapping("/user")
 @Controller

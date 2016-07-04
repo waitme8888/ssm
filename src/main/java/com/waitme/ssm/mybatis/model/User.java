@@ -1,4 +1,4 @@
-package com.waitme.ssm.model;
+package com.waitme.ssm.mybatis.model;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
