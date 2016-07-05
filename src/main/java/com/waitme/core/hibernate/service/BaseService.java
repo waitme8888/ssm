@@ -6,7 +6,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.criterion.DetachedCriteria;
+
 import com.waitme.core.hibernate.dao.IDao;
+import com.waitme.core.hibernate.page.Page;
 
 public class BaseService<T> {
 
@@ -46,5 +49,12 @@ public class BaseService<T> {
 
 	public T get(final Serializable id) {
 		return dao.get(entityClass, id);
+	}
+	
+	public List<T> findByCriteria(DetachedCriteria detachedCriteria) {
+		return dao.findByCriteria(detachedCriteria);
+	}
+	public Page<T> findByCriteria(DetachedCriteria detachedCriteria, int pageNum, int pageSize) {
+		return dao.findByCriteria(detachedCriteria, pageNum, pageSize);
 	}
 }
