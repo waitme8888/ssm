@@ -63,7 +63,13 @@
         <property name="sessionIdCookieEnabled" value="true"/>
         <!-- 
         <property name="sessionIdCookie" ref="sessionIdCookie"/>
-         -->
+        -->
+        <property name="sessionListeners">
+            <list>
+                <bean id="shiroSessionListener" class="com.waitme.core.shiro.listener.ShiroSessionListener"></bean>
+            </list>
+        </property>
+         
     </bean>
 
     <!-- 安全管理器 -->
