@@ -11,14 +11,14 @@ PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
 
 <generatorConfiguration>
 	<!-- 配置文件路径 -->
-	<properties resource="generator/generatorConfig.properties" />
+	<properties resource="mybatis/generator/generatorConfig.properties" />
 
-	<context id="MyBatisTables" targetRuntime="MyBatis3Simple" defaultModelType="flat">
-	
+	<context id="MyBatisTables" targetRuntime="MyBatis3" defaultModelType="flat">
+	<!--
 	    <plugin type="${mapper.plugin}">
             <property name="mappers" value="${mapper.Mapper}" />
         </plugin>
-	
+	  -->
 		<!-- 生成注释 -->
         <commentGenerator type="tk.mybatis.mapper.generator.MapperCommentGenerator">
             <property name="suppressAllComments" value="true" />
