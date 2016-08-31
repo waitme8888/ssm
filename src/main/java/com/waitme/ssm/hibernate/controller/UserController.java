@@ -34,8 +34,8 @@ public class UserController {
 	@Resource(name="user2Service")
 	private UserService userService;
 	
-	@Resource
-	RedisTemplate<Serializable, Serializable> redisTemplate;
+//	@Resource
+//	RedisTemplate<Serializable, Serializable> redisTemplate;
 	
 	@RequestMapping("/list")
 	public String list(@RequestParam(value="pageNo", defaultValue="1") int pageNo,

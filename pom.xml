@@ -17,6 +17,7 @@
        <mysql.version>5.1.37</mysql.version>
        <tk.mybatis>3.3.8</tk.mybatis>
        <shiro.vesion>1.2.5</shiro.vesion>
+       <jetty.version>7.2.0.v20101020</jetty.version>
   </properties>
   <dependencies>
        <dependency>
@@ -262,10 +263,39 @@
 		    <artifactId>jedis</artifactId>
 		    <version>2.8.0</version>
 		</dependency>
-		
+		<!-- Jetty -->
+		<!-- 
+        <dependency>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>jetty-runner</artifactId>
+            <version>${jetty.version}</version>
+            <optional>true</optional>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-webapp</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-plus</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-jndi</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>jsp-2.1-glassfish</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>javax.transaction</groupId>
+                    <artifactId>jta</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        -->
   </dependencies>
   <build>
-    
     <plugins>
 	    <plugin>
 	        <groupId>org.apache.maven.plugins</groupId>
@@ -315,8 +345,53 @@
 	               <version>${tk.mybatis}</version>
 	           </dependency>
 	       </dependencies>
-	       
-	   </plugin>
+	    </plugin>
+	    <!--  
+		<plugin>
+		    <groupId>org.mortbay.jetty</groupId>
+		    <artifactId>jetty-maven-plugin</artifactId>
+		    <version>${jetty.version}</version>
+		    <configuration>
+		        <webAppConfig>
+		            <contextPath>/ssm</contextPath>
+		            <defaultsDescriptor>src/main/resources/jetty/webdefault.xml</defaultsDescriptor>
+		        </webAppConfig>
+		        <connectors>
+		            <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+		                <port>9000</port>
+		                <maxIdleTime>60000</maxIdleTime>
+		            </connector>
+		        </connectors>
+		        <reload>manual</reload>
+		    </configuration>
+		</plugin>
+		-->
+        <plugin>
+            <groupId>org.apache.tomcat.maven</groupId>
+            <artifactId>tomcat7-maven-plugin</artifactId>
+            <version>2.2</version>
+            <configuration>
+                <port>9000</port>
+                <path>/ssm</path>
+                <uriEncoding>UTF-8</uriEncoding>
+                <finalName>docm</finalName>
+                <server>tomcat7</server>
+                <contextReloadable>true</contextReloadable>
+            </configuration>
+        </plugin>
     </plugins>
+	<resources>
+	    <resource>
+	        <directory>src/main/java</directory>
+	        <includes>
+	            <include>**/*.xml</include>
+	        </includes>
+	    </resource>
+	    <resource>
+	        <directory>src/main/resources</directory>
+	        <filtering>true</filtering>
+	    </resource>
+	</resources>
+	
   </build>
 </project>
