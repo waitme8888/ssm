@@ -7,20 +7,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 	
-	public static final String LOGIN_PAGE = "login";
-	public static final String INDEX_PAGE = "index";
+	public static final String ADMIN_LOGIN_PAGE = "admin/login";
+	public static final String ADMIN_INDEX_PAGE = "admin/index";
+	public static final String SYS_LOGIN_PAGE = "sys/login";
+	public static final String SYS_INDEX_PAGE = "sys/index";
 	
-	@RequestMapping("/login")
+	@RequestMapping("/admin/login")
 	public String toLoginPage() {
 		
 		
-		return LOGIN_PAGE;
+		return ADMIN_LOGIN_PAGE;
 	}
 	
-	@RequestMapping("/index")
+	@RequestMapping("/admin/index")
 	public String toIndexpage() {
 		
-		return INDEX_PAGE;
+		return ADMIN_INDEX_PAGE;
+	}
+	
+	@RequestMapping("/sys/login")
+	public String toSysLoginPage() {
+		
+		
+		return SYS_LOGIN_PAGE;
+	}
+	
+	@RequestMapping("/sys/index")
+	public String toSysIndexpage() {
+		
+		return SYS_INDEX_PAGE;
 	}
 
 }

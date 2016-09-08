@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>登录</title>
+    <title>系统登录</title>
     <style>.error{color:red;}</style>
 </head>
 <body>
-
+<h2>系统登录</h2>
 <div class="error">${error}</div>
 <form action="" method="post">
     用户名：<input type="text" name="username"><br/>
