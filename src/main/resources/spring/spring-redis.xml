@@ -28,6 +28,9 @@
 		<property name="keySerializer">
 			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
 		</property>
+<!-- 		<property name="defaultSerializer">
+		    <bean class="com.waitme.core.redis.serializer.KryoRedisSerializer" />
+		</property> -->
 		<property name="valueSerializer">
 			<bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
 		</property>
@@ -38,6 +41,5 @@
 			<bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
 		</property>
 	</bean>
-
 
 </beans>

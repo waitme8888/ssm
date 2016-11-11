@@ -1,5 +1,6 @@
 package com.waitme.ssm.mybatis.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example.Criteria;
 
+import com.alibaba.druid.util.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.waitme.ssm.mybatis.model.User;
@@ -55,6 +57,16 @@ public class UserController {
 		// 其中 required=false设置当不传searchName参数时，不会保错，默认：true
 		String searchName = request.getParameter("searchName");
 		
+		String sessionid = request.getSession().getId();
+		log.info(sessionid);
+		Map<String, Object> map = (Map<String, Object>)request.getSession().getAttribute("map");
+		if (map==null) {
+			map = new HashMap<String, Object>();
+			for(int i=0;i<100;i++) {
+				map.put(""+i, new Date());
+			}
+			request.getSession().setAttribute("map", map);
+		}
 		// 增加查询条件
 		Condition condition = new Condition(User.class);
 		Criteria criteria = condition.createCriteria();
