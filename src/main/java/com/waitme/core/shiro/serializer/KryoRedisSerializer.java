@@ -1,4 +1,4 @@
-package com.waitme.core.redis.serializer;
+package com.waitme.core.shiro.serializer;
 
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.SerializationException;

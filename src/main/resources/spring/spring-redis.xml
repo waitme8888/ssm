@@ -28,18 +28,18 @@
 		<property name="keySerializer">
 			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
 		</property>
-<!-- 		<property name="defaultSerializer">
-		    <bean class="com.waitme.core.redis.serializer.KryoRedisSerializer" />
-		</property> -->
-		<property name="valueSerializer">
-			<bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+		<property name="defaultSerializer">
+		    <bean class="com.waitme.core.shiro.serializer.KryoRedisSerializer" />
 		</property>
+<!-- 		<property name="valueSerializer">
+			<bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
+		</property> -->
 		<property name="hashKeySerializer">
 			<bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
 		</property>
-		<property name="hashValueSerializer">
+<!-- 		<property name="hashValueSerializer">
 			<bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer" />
-		</property>
+		</property> -->
 	</bean>
 
 </beans>
